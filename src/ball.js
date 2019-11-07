@@ -4,7 +4,6 @@ class Ball {
         this.vel = createVector(xvel, yvel);
     }
 
-
     move() {
         this.vel.y += GRAVITY;
         
