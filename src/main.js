@@ -12,7 +12,7 @@ var walls = [];
 
 var ballOptions = {
     restitution: 1,
-    density: 0.001,
+    density: 0.0005,
     friction: 0.1
 };
 
@@ -69,6 +69,10 @@ function draw() {
     balls.forEach(ball => {
         ball.show();
     });
+
+    if(mouseIsPressed){
+        balls.push(new Ball(mouseX, mouseY));
+    }
 };
 
 function mousePressed() {
