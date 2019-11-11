@@ -3,12 +3,8 @@ class Hoop {
         this.pos = createVector(HOOP_X, height);
 
         this.boxes = [
-            [this.pos.x + HOOP_RAD, this.pos.y - BACKBOARD_HEIGHT, BACKBOARD_THICKNESS, BACKBOARD_HEIGHT],
-            [this.pos.x - HOOP_RAD - 3, this.pos.y - 3, 6, 6],
-            [WIDTH, 0, 50, HEIGHT],
-            [0, HEIGHT, WIDTH, 50],
-            [0-50, 0, 50, HEIGHT],
-            [0, 0-50, WIDTH, 50]
+            [this.pos.x + HOOP_RAD, this.pos.y - (BACKBOARD_HEIGHT/2), BACKBOARD_THICKNESS, BACKBOARD_HEIGHT],
+            [this.pos.x - HOOP_RAD - 3, this.pos.y - 3, 6, 6]
         ];
     }
 

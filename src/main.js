@@ -11,10 +11,18 @@ var ground;
 var walls = [];
 
 var ballOptions = {
-    restitution: 1,
+    restitution: 1.1,
     density: 0.0005,
-    friction: 0.1
+    friction: 0.1,
+    airFriction: 0.01,
+    timeScale: 1
 };
+
+var wallOptions = {
+    restitution: 1,
+    friction: 0.1,
+    isStatic: true
+}
 
 const BALL_DIAM = 48; //diam in cm
 
@@ -32,13 +40,12 @@ function setup() {
     engine = Engine.create();
     world = engine.world;
 
-
     rectMode(CENTER);
 
-    ground = Bodies.rectangle(WIDTH / 2, HEIGHT, WIDTH, 50, { isStatic: true });
-    walls.push(Bodies.rectangle(0, HEIGHT / 2, 10, HEIGHT, { isStatic: true }));
-    walls.push(Bodies.rectangle(WIDTH / 2, 0, WIDTH, 10, { isStatic: true }));
-    walls.push(Bodies.rectangle(WIDTH, HEIGHT / 2, 10, HEIGHT, { isStatic: true }));
+    ground = Bodies.rectangle(WIDTH / 2, HEIGHT, WIDTH, 50, wallOptions);
+    walls.push(Bodies.rectangle(0, HEIGHT / 2, 10, HEIGHT, wallOptions));
+    walls.push(Bodies.rectangle(WIDTH / 2, 0, WIDTH, 10, wallOptions));
+    walls.push(Bodies.rectangle(WIDTH, HEIGHT / 2, 10, HEIGHT, wallOptions));
 
     World.add(world, ground);
     walls.forEach(wall => {
@@ -48,6 +55,9 @@ function setup() {
     frameRate(60);
     createCanvas(WIDTH, HEIGHT);
     Engine.run(engine);
+
+
+    h = new Hoop(300);
 }
 
 function draw() {
@@ -70,14 +80,17 @@ function draw() {
         ball.show();
     });
 
-    if(mouseIsPressed){
-        balls.push(new Ball(mouseX, mouseY));
+    if (mouseIsPressed) {
+       // balls.push(new Ball(mouseX, mouseY));
     }
+
+    h.show();
 };
 
 function mousePressed() {
     balls.push(new Ball(mouseX, mouseY));
 }
+
 function keyPressed() {
     balls.forEach(ball => {
         //Matter.Body.applyForce(ball.body, { x: 0, y: 0 }, { x: 0.1, y: 0.1 });
