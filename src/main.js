@@ -1,6 +1,8 @@
 const WIDTH = 1000;
 const HEIGHT = 800;
 
+const HoopCollidors = 4; //invisible collision for the hoops
+
 //physics engine
 var Engine = Matter.Engine,
     Render = Matter.Render,
@@ -63,7 +65,7 @@ function setup() {
     Engine.run(engine);
 
 
-    h = new Hoop(300);
+    h = new Hoop(400,400);
 }
 
 function draw() {
