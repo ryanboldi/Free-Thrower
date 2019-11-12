@@ -11,26 +11,32 @@ var ground;
 var walls = [];
 
 var ballOptions = {
-    restitution: 1.1,
+    restitution: 1,
     density: 0.0005,
-    friction: 0.1,
+    friction: 0.01,
     airFriction: 0.01,
     timeScale: 1
 };
 
 var wallOptions = {
     restitution: 1,
-    friction: 0.1,
+    friction: 0.01,
     isStatic: true
 }
 
-const BALL_DIAM = 48; //diam in cm
+var hoopOptions = {
+    restitution: 1,
+    friction: 0.01,
+    isStatic: true
+}
+
+const BALL_DIAM = 36; //diam in cm
 
 const BACKBOARD_HEIGHT = 220;
 const BACKBOARD_THICKNESS = 20;
 
-const HOOP_RAD = 46;
-const HOOP_X = WIDTH - HOOP_RAD - BACKBOARD_THICKNESS;
+const HOOP_RAD = 32;
+const HOOP_X = WIDTH - HOOP_RAD - BACKBOARD_THICKNESS - 5;
 
 let balls = [];
 let h;
@@ -81,9 +87,8 @@ function draw() {
     });
 
     if (mouseIsPressed) {
-       // balls.push(new Ball(mouseX, mouseY));
+        // balls.push(new Ball(mouseX, mouseY));
     }
-
     h.show();
 };
 
