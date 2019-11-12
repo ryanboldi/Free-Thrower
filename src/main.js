@@ -11,21 +11,21 @@ var ground;
 var walls = [];
 
 var ballOptions = {
-    restitution: 1,
+    restitution: 0.9,
     density: 0.0005,
     friction: 0.01,
-    airFriction: 0.01,
+    airFriction: 1,
     timeScale: 1
 };
 
 var wallOptions = {
-    restitution: 1,
+    restitution: 0.9,
     friction: 0.01,
     isStatic: true
 }
 
 var hoopOptions = {
-    restitution: 1,
+    restitution: 0.9,
     friction: 0.01,
     isStatic: true
 }
