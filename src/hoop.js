@@ -8,14 +8,15 @@ class Hoop {
         ];
 
         this.bodies = []
-        this.boxes.forEach(box => {
-            this.bodies.push(Bodies.rectangle(box[0], box[1], box[2], box[3], hoopOptions));
-        });
-
         console.log(this.bodies.length);
-        World.add(world, this.bodies[0]);
-        World.add(world, this.bodies[1]);
 
+        this.body = Matter.Composite.create(hoopOptions);
+        this.boxes.forEach(box => {
+            Matter.Composite.add(this.body, Bodies.rectangle(box[0], box[1], box[2], box[3]));
+        });
+        //World.add(world, this.bodies[0]);
+        //World.add(world, this.bodies[1]);
+        World.add(world, this.body);
     }
 
     show() {
@@ -32,5 +33,10 @@ class Hoop {
         //TODO, MAYBE DRAW
         pop();
         //rect(this.boxes[1][0], this.boxes[1][1], this.boxes[1][2], this.boxes[1][3]);
+    }
+
+
+    delete(){
+        Matter.Composite.remove(world, this.body);
     }
 }

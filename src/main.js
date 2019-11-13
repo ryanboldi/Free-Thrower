@@ -15,7 +15,7 @@ var walls = [];
 var ballOptions = {
     restitution: 0.9,
     density: 0.0005,
-    friction: 0.01,
+    friction: 1,
     airFriction: 1,
     timeScale: 1
 };
@@ -32,12 +32,15 @@ var hoopOptions = {
     isStatic: true
 }
 
-const BALL_DIAM = 36; //diam in cm
+var netOptions = {
+    stiffness: 0.7,
+}
+const BALL_DIAM = 60; //diam in cm
 
 const BACKBOARD_HEIGHT = 220;
 const BACKBOARD_THICKNESS = 20;
 
-const HOOP_RAD = 32;
+const HOOP_RAD = 60;
 const HOOP_X = WIDTH - HOOP_RAD - BACKBOARD_THICKNESS - 5;
 
 let balls = [];
@@ -95,7 +98,7 @@ function draw() {
 };
 
 function mousePressed() {
-    balls.push(new Ball(mouseX, mouseY));
+    balls.push(new Ball(mouseX, mouseY));  
 }
 
 function keyPressed() {
@@ -103,5 +106,7 @@ function keyPressed() {
         //Matter.Body.applyForce(ball.body, { x: 0, y: 0 }, { x: 0.1, y: 0.1 });
         Matter.Body.setVelocity(ball.body, { x: 10, y: -10 });
         Matter.Body.setAngularVelocity(ball.body, 0.1);
+        h.delete();
+        h = new Hoop(random(100,WIDTH-100), random(100, HEIGHT-100));
     })
 }
