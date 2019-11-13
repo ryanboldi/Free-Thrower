@@ -11,6 +11,7 @@ class Hoop {
         console.log(this.bodies.length);
 
         this.body = Matter.Composite.create(hoopOptions);
+
         this.boxes.forEach(box => {
             Matter.Composite.add(this.body, Bodies.rectangle(box[0], box[1], box[2], box[3]));
         });
