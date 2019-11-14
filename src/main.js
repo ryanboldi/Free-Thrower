@@ -14,10 +14,11 @@ var walls = [];
 
 var ballOptions = {
     restitution: 0.9,
-    density: 0.0005,
-    friction: 1,
+    density: 0.1,
+    friction: 0.5,
     airFriction: 1,
-    timeScale: 1
+    timeScale: 1,
+    frictionStatic: 1
 };
 
 var wallOptions = {
@@ -37,10 +38,13 @@ var netOptions = {
 }
 const BALL_DIAM = 60; //diam in cm
 
+
+
 const BACKBOARD_HEIGHT = 220;
 const BACKBOARD_THICKNESS = 20;
 
 const HOOP_RAD = 60;
+const NET_LENGTH = HOOP_RAD;
 const HOOP_X = WIDTH - HOOP_RAD - BACKBOARD_THICKNESS - 5;
 
 let balls = [];
@@ -68,7 +72,7 @@ function setup() {
     Engine.run(engine);
 
 
-    h = new Hoop(400,400);
+    h = new Hoop(400, 400);
 }
 
 function draw() {
@@ -98,7 +102,7 @@ function draw() {
 };
 
 function mousePressed() {
-    balls.push(new Ball(mouseX, mouseY));  
+    balls.push(new Ball(mouseX, mouseY));
 }
 
 function keyPressed() {
@@ -107,6 +111,6 @@ function keyPressed() {
         Matter.Body.setVelocity(ball.body, { x: 10, y: -10 });
         Matter.Body.setAngularVelocity(ball.body, 0.1);
         h.delete();
-        h = new Hoop(random(100,WIDTH-100), random(100, HEIGHT-100));
+        h = new Hoop(random(100, WIDTH - 100), random(100, HEIGHT - 100));
     })
 }

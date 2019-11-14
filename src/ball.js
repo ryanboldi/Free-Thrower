@@ -1,12 +1,12 @@
 class Ball {
     constructor(x, y) {
         this.body = Bodies.circle(x, y, BALL_DIAM / 2, ballOptions);
-        this.body.collisionFilter.group = 1; //balls don't collide with each other if it is
+        this.body.collisionFilter.group = -1; //balls don't collide with each other if it is
         World.add(world, this.body);
         //let vel = { x: random(-10, 30), y: random(-30, 10) }
         let vel = {
             x: 10,
-            y: -15
+            y: -25
         };
         Matter.Body.setVelocity(this.body, vel);
         Matter.Body.setAngularVelocity(this.body, -vel.x / 40);
