@@ -39,11 +39,10 @@ var netOptions = {
 const BALL_DIAM = 60; //diam in cm
 
 
-
 const BACKBOARD_HEIGHT = 220;
 const BACKBOARD_THICKNESS = 20;
 
-const HOOP_RAD = 60;
+const HOOP_RAD = 50;
 const NET_LENGTH = HOOP_RAD*(3/2);
 const HOOP_X = WIDTH - HOOP_RAD - BACKBOARD_THICKNESS - 5;
 

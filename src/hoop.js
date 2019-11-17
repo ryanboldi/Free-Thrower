@@ -8,8 +8,10 @@ class Hoop {
         ];
 
         this.net = [
-            [HOOP_RAD + this.pos.x + HoopCollidors / 2, this.pos.y + NET_LENGTH / 2, HoopCollidors, NET_LENGTH],
-            [this.pos.x - HOOP_RAD - HoopCollidors / 2, this.pos.y + NET_LENGTH / 2, HoopCollidors, NET_LENGTH]
+            [HOOP_RAD + this.pos.x + HoopCollidors / 2, this.pos.y + NET_LENGTH / 4, HoopCollidors, NET_LENGTH],
+            [this.pos.x - HOOP_RAD - HoopCollidors / 2, this.pos.y + NET_LENGTH / 4, HoopCollidors, NET_LENGTH],
+            [HOOP_RAD + this.pos.x + HoopCollidors / 2, this.pos.y + NET_LENGTH * (3/4), HoopCollidors, NET_LENGTH],
+            [this.pos.x - HOOP_RAD - HoopCollidors / 2, this.pos.y + NET_LENGTH * (3/4), HoopCollidors, NET_LENGTH]
         ]
 
         this.comp = Matter.Composite.create(hoopOptions);
@@ -30,17 +32,17 @@ class Hoop {
         let leftConstraint = {
             bodyA: Matter.Composite.get(this.comp, 8, 'body'),
             bodyB: Matter.Composite.get(this.comp, 10, 'body'),
-            damping:0.5,
-            stiffness: 0.1,
-            pointB: { x: 0, y: -NET_LENGTH / 2 },
+            damping: 0.2,
+            stiffness: 1,
+            pointB: { x: 0, y: -NET_LENGTH / 2 }, //TODO POINTB SHOULD ROTATE WITH TEH NET
             length: 0
         }
 
         let rightConstraint = {
             bodyA: Matter.Composite.get(this.comp, 9, 'body'),
             bodyB: Matter.Composite.get(this.comp, 11, 'body'),
-            damping:0.5,
-            stiffness: 0.1,
+            damping: 0.2,
+            stiffness: 1,
             pointB: { x: 0, y: -NET_LENGTH / 2 },
             length: 0
         }
@@ -48,11 +50,11 @@ class Hoop {
         let middleConstraint = {
             bodyA: Matter.Composite.get(this.comp, 10, "body"),
             bodyB: Matter.Composite.get(this.comp, 11, "body"),
-            damping:1,
+            damping: 0.2,
             stiffness: 0.2,
-            pointA: { x: 0, y: NET_LENGTH / 2 },
-            pointB: { x: 0, y: NET_LENGTH / 2 },
-            length: HOOP_RAD * 1.8
+            pointA: { x: 0, y: NET_LENGTH },
+            pointB: { x: 0, y: NET_LENGTH },
+            length: 0
         }
 
         this.comp = Matter.Composite.add(this.comp, Matter.Constraint.create(leftConstraint));
@@ -91,7 +93,7 @@ class Hoop {
             push();
             translate(position.x, position.y);
             rotate(angle);
-            fill(0);
+            fill(255);
             rect(0, 0, HoopCollidors, NET_LENGTH);
             pop();
 
