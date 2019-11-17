@@ -23,16 +23,21 @@ class Hoop {
         this.comp = Matter.Composite.add(this.comp, Bodies.rectangle(box[0], box[1], box[2], box[3], { id: 9, isStatic: true }));
 
         let net = this.net[0];
-        this.comp = Matter.Composite.add(this.comp, Bodies.rectangle(net[0], net[1], net[2], net[3], { id: 10, velocity: { x: 0, y: 0 } }));
+        this.comp = Matter.Composite.add(this.comp, Bodies.rectangle(net[0], net[1], net[2], net[3], { id: 10 }));
         net = this.net[1];
-        this.comp = Matter.Composite.add(this.comp, Bodies.rectangle(net[0], net[1], net[2], net[3], { id: 11, velocity: { x: 0, y: 0 } }));
+        this.comp = Matter.Composite.add(this.comp, Bodies.rectangle(net[0], net[1], net[2], net[3], { id: 11}));
+
+        Matter.Composite.get(this.comp, 10, 'body').collisionFilter.group = -2;
+        Matter.Composite.get(this.comp, 11, 'body').collisionFilter.group = -2;
+        Matter.Composite.get(this.comp, 8, 'body').collisionFilter.group = -2;
+        Matter.Composite.get(this.comp, 9, 'body').collisionFilter.group = -2;
 
         //add netholders (constraint) to composite
 
         let leftConstraint = {
             bodyA: Matter.Composite.get(this.comp, 8, 'body'),
             bodyB: Matter.Composite.get(this.comp, 10, 'body'),
-            damping: 0.2,
+            damping: 0,
             stiffness: 1,
             pointB: { x: 0, y: -NET_LENGTH / 2 }, //TODO POINTB SHOULD ROTATE WITH TEH NET
             length: 0
@@ -41,7 +46,7 @@ class Hoop {
         let rightConstraint = {
             bodyA: Matter.Composite.get(this.comp, 9, 'body'),
             bodyB: Matter.Composite.get(this.comp, 11, 'body'),
-            damping: 0.2,
+            damping: 0,
             stiffness: 1,
             pointB: { x: 0, y: -NET_LENGTH / 2 },
             length: 0
@@ -50,11 +55,11 @@ class Hoop {
         let middleConstraint = {
             bodyA: Matter.Composite.get(this.comp, 10, "body"),
             bodyB: Matter.Composite.get(this.comp, 11, "body"),
-            damping: 0.2,
-            stiffness: 0.2,
+            damping: 0,
+            stiffness: 0.1,
             pointA: { x: 0, y: NET_LENGTH },
             pointB: { x: 0, y: NET_LENGTH },
-            length: 0
+            length: HOOP_RAD
         }
 
         this.comp = Matter.Composite.add(this.comp, Matter.Constraint.create(leftConstraint));
