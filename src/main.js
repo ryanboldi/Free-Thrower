@@ -34,7 +34,10 @@ var hoopOptions = {
 }
 
 var netOptions = {
-    stiffness: 0.7,
+    restitution: 0.9,
+    friction: 0.01,
+    density: 0.3,
+    timeScale: 3,
 }
 const BALL_DIAM = 60; //diam in cm
 
