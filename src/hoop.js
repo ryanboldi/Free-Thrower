@@ -82,7 +82,7 @@ class Hoop {
         balls.forEach(ball => {
             var collision = (Matter.SAT.collides(ball.body, Matter.Composite.get(this.comp, 99, "body")));
             if (collision.collided) {
-                //console.log("SCORE");
+                console.log("SCORE");
             }
         });
 

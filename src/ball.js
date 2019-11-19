@@ -5,8 +5,8 @@ class Ball {
         World.add(world, this.body);
         //let vel = { x: random(-10, 30), y: random(-30, 10) }
         let vel = {
-            x: 10,
-            y: -10
+            x: random(0, 30),
+            y: random(0, -30)
         };
         Matter.Body.setVelocity(this.body, vel);
         Matter.Body.setAngularVelocity(this.body, -vel.x / 40);
