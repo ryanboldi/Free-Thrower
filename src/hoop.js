@@ -29,6 +29,9 @@ class Hoop {
         netOptions.id = 11;
         this.comp = Matter.Composite.add(this.comp, Bodies.rectangle(net[0], net[1], net[2], net[3], netOptions));
 
+        this.comp = Matter.Composite.add(this.comp, Bodies.rectangle(this.pos.x, this.pos.y + 10, HOOP_RAD * 1.3, 5, { isSensor: true, isStatic: true, id: 99 }));
+
+
         Matter.Composite.get(this.comp, 10, 'body').collisionFilter.group = -2;
         Matter.Composite.get(this.comp, 11, 'body').collisionFilter.group = -2;
         Matter.Composite.get(this.comp, 8, 'body').collisionFilter.group = -2;
@@ -67,8 +70,6 @@ class Hoop {
         this.comp = Matter.Composite.add(this.comp, Matter.Constraint.create(leftConstraint));
         this.comp = Matter.Composite.add(this.comp, Matter.Constraint.create(rightConstraint));
         this.comp = Matter.Composite.add(this.comp, Matter.Constraint.create(middleConstraint));
-
-        console.log(this.comp);
         //World.add(world, this.rightNet);
         //console.log(Matter.Composite.allBodies(this.comp));
         //World.add(world, this.bodies[0]);
@@ -77,17 +78,27 @@ class Hoop {
     }
 
     show() {
+        //check for collisions
+        balls.forEach(ball => {
+            var collision = (Matter.SAT.collides(ball.body, Matter.Composite.get(this.comp, 99, "body")));
+            if (collision.collided) {
+                //console.log("SCORE");
+            }
+        });
 
         //fill(255,0,0);
         push();
         translate(this.pos.x, this.pos.y);
         stroke(255, 0, 0);
+        strokeWeight(2);
         noFill();
         strokeWeight(2);
         ellipse(0, 0, HOOP_RAD * 2, HOOP_RAD / 5);
         strokeWeight(0.5);
-        fill(255);
+        fill(255, 0, 0, 10);
         stroke(255, 0, 0);
+        rect(0, 10, HOOP_RAD * 1.3, 5)
+
         //TODO, MAYBE DRAW
         pop();
 

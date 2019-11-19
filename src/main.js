@@ -37,7 +37,7 @@ var netOptions = {
     restitution: 0.9,
     friction: 0.01,
     density: 0.3,
-    timeScale: 3,
+    timeScale: 3
 }
 const BALL_DIAM = 60; //diam in cm
 
@@ -74,7 +74,7 @@ function setup() {
     Engine.run(engine);
 
 
-    h = new Hoop(400, 400);
+    h = new Hoop(WIDTH-HOOP_RAD - HoopCollidors*2, 500);
 }
 
 function draw() {
@@ -110,9 +110,9 @@ function mousePressed() {
 function keyPressed() {
     balls.forEach(ball => {
         //Matter.Body.applyForce(ball.body, { x: 0, y: 0 }, { x: 0.1, y: 0.1 });
-        Matter.Body.setVelocity(ball.body, { x: 10, y: -10 });
-        Matter.Body.setAngularVelocity(ball.body, 0.1);
+        //Matter.Body.setVelocity(ball.body, { x: 10, y: -10 });
+        //Matter.Body.setAngularVelocity(ball.body, 0.1);
         h.delete();
-        h = new Hoop(random(100, WIDTH - 100), random(100, HEIGHT - 100));
+        h = new Hoop(WIDTH-HOOP_RAD - HoopCollidors*2, random(100, HEIGHT - 100));
     })
 }

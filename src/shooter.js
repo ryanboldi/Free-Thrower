@@ -4,4 +4,12 @@ class Shooter{
         this.brain = genome;
         this.score = 0;
     }
+
+    shoot(){
+        
+    }
+
+    draw(){
+
+    }
 }
