@@ -79,12 +79,6 @@ class Hoop {
 
     show() {
         //check for collisions
-        balls.forEach(ball => {
-            var collision = (Matter.SAT.collides(ball.body, Matter.Composite.get(this.comp, 99, "body")));
-            if (collision.collided) {
-                console.log("SCORE");
-            }
-        });
 
         //fill(255,0,0);
         push();

@@ -46,18 +46,24 @@ const BACKBOARD_HEIGHT = 220;
 const BACKBOARD_THICKNESS = 20;
 
 const HOOP_RAD = 50;
-const NET_LENGTH = HOOP_RAD*(3/2);
+const NET_LENGTH = HOOP_RAD * (3 / 2);
 const HOOP_X = WIDTH - HOOP_RAD - BACKBOARD_THICKNESS - 5;
 
 const SHOOTERS = 20;
 const mutationRate = 0.1;
 
+const SHOOTER_MAX_X = 30;
+const SHOOTER_MAX_Y = -30;
 
-let balls = [];
+const SHOOTER_START_X = 50;
+const SHOOTER_START_Y = HEIGHT - 50;
+
+let shooters = [];
 let h;
 let hoopBoxes; //array of boxes of the hoop
 
 function setup() {
+    initNeat();
     engine = Engine.create();
     world = engine.world;
 
@@ -78,7 +84,8 @@ function setup() {
     Engine.run(engine);
 
 
-    h = new Hoop(WIDTH-HOOP_RAD - HoopCollidors*2, 500);
+    h = new Hoop(WIDTH - HOOP_RAD - HoopCollidors * 2, 500);
+    startEvaluation();
 }
 
 function draw() {
@@ -97,26 +104,38 @@ function draw() {
     rect(WIDTH / 2, HEIGHT, WIDTH, 50);
 
     pop();
-    balls.forEach(ball => {
-        ball.show();
+    shooters.forEach(shooter => {
+        shooter.show();
     });
-
-    if (mouseIsPressed) {
-        // balls.push(new Ball(mouseX, mouseY));
-    }
     h.show();
+
+    if (checkStatic){
+        endEvalutation();
+    }
 };
 
-function mousePressed() {
-    balls.push(new Ball(mouseX, mouseY));
+function resetHoop(){
+    h.delete();
+    //h = new Hoop(WIDTH - HOOP_RAD - HoopCollidors * 2, random(100, HEIGHT - 100));
+    h = new Hoop(random(WIDTH/2, WIDTH-HOOP_RAD - HoopCollidors*2), random(100, HEIGHT - 100))
+    // ^ IF YOU CHANGE THIS MAKE SURE TO CHANGE IT IN THE INPUT NORMALISATION
 }
 
-function keyPressed() {
-    balls.forEach(ball => {
-        //Matter.Body.applyForce(ball.body, { x: 0, y: 0 }, { x: 0.1, y: 0.1 });
-        //Matter.Body.setVelocity(ball.body, { x: 10, y: -10 });
-        //Matter.Body.setAngularVelocity(ball.body, 0.1);
-        h.delete();
-        h = new Hoop(WIDTH-HOOP_RAD - HoopCollidors*2, random(100, HEIGHT - 100));
+function normalise(num, in_min, in_max, out_min, out_max) {
+    return (num - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+}
+
+/**
+ * checks if all balls are static
+ * @returns bool
+ */
+function checkStatic(){
+    let allStatic = true;
+    shooters.forEach(shooter => {
+        if (!shooter.ball.isSleeping()){
+            allStatic = false;
+            console.log("not sleeping");
+        }
     })
+    return false;
 }
