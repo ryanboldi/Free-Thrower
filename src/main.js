@@ -128,6 +128,9 @@ function draw() {
 
 function resetHoop() {
     h.delete();
+    World.bodies.forEach(body => {
+        World.remove(world, body);
+    })
     //h = new Hoop(WIDTH - HOOP_RAD - HoopCollidors * 2, random(100, HEIGHT - 100));
     h = new Hoop(random(WIDTH / 2, WIDTH - HOOP_RAD - HoopCollidors * 2), random(100, HEIGHT - 100))
     // ^ IF YOU CHANGE THIS MAKE SURE TO CHANGE IT IN THE INPUT NORMALISATION
