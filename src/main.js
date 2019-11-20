@@ -49,6 +49,10 @@ const HOOP_RAD = 50;
 const NET_LENGTH = HOOP_RAD*(3/2);
 const HOOP_X = WIDTH - HOOP_RAD - BACKBOARD_THICKNESS - 5;
 
+const SHOOTERS = 20;
+const mutationRate = 0.1;
+
+
 let balls = [];
 let h;
 let hoopBoxes; //array of boxes of the hoop
