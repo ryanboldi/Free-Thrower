@@ -28,8 +28,7 @@ function initNeat() {
         mutationRate: mutationRate,
         elitism: Math.round(0.1 * SHOOTERS),
         network: new Architect.Random(2, 4, 2)
-    }
-    );
+    });
 }
 
 function startEvaluation() {
@@ -37,6 +36,7 @@ function startEvaluation() {
     highestScore = 0;
 
     for (var genome in neat.population) {
+        neat.mutate();
         genome = neat.population[genome];
         new Shooter(genome);
     }

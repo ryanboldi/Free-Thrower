@@ -41,6 +41,8 @@ var netOptions = {
 }
 const BALL_DIAM = 60; //diam in cm
 
+const TIMEOUT = 3 * 60;
+let counter = 0;
 
 const BACKBOARD_HEIGHT = 220;
 const BACKBOARD_THICKNESS = 20;
@@ -89,6 +91,7 @@ function setup() {
 }
 
 function draw() {
+    counter ++;
     background(223);
     push();
 
@@ -109,15 +112,24 @@ function draw() {
     });
     h.show();
 
-    if (checkStatic){
+    if (checkStatic == true) {
+        console.log("idiot")
+        resetHoop();
+        endEvalutation();
+    }
+
+
+    if (counter == TIMEOUT){
+        counter = 0;
+        resetHoop();
         endEvalutation();
     }
 };
 
-function resetHoop(){
+function resetHoop() {
     h.delete();
     //h = new Hoop(WIDTH - HOOP_RAD - HoopCollidors * 2, random(100, HEIGHT - 100));
-    h = new Hoop(random(WIDTH/2, WIDTH-HOOP_RAD - HoopCollidors*2), random(100, HEIGHT - 100))
+    h = new Hoop(random(WIDTH / 2, WIDTH - HOOP_RAD - HoopCollidors * 2), random(100, HEIGHT - 100))
     // ^ IF YOU CHANGE THIS MAKE SURE TO CHANGE IT IN THE INPUT NORMALISATION
 }
 
@@ -129,13 +141,13 @@ function normalise(num, in_min, in_max, out_min, out_max) {
  * checks if all balls are static
  * @returns bool
  */
-function checkStatic(){
+function checkStatic() {
     let allStatic = true;
     shooters.forEach(shooter => {
-        if (!shooter.ball.isSleeping()){
+        if (!shooter.ball.body.isSleeping()) {
             allStatic = false;
             console.log("not sleeping");
         }
     })
-    return false;
+    return allStatic;
 }
