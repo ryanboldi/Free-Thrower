@@ -91,7 +91,7 @@ function setup() {
 }
 
 function draw() {
-    counter ++;
+    counter++;
     background(223);
     push();
 
@@ -119,7 +119,7 @@ function draw() {
     }
 
 
-    if (counter == TIMEOUT){
+    if (counter == TIMEOUT) {
         counter = 0;
         resetHoop();
         endEvalutation();
@@ -128,12 +128,24 @@ function draw() {
 
 function resetHoop() {
     h.delete();
-    World.bodies.forEach(body => {
-        World.remove(world, body);
-    })
+    World.clear(world, false);
+
+    ground = Bodies.rectangle(WIDTH / 2, HEIGHT, WIDTH, 50, wallOptions);
+    //walls.push(Bodies.rectangle(0, HEIGHT / 2, 10, HEIGHT, wallOptions));
+    //walls.push(Bodies.rectangle(WIDTH / 2, 0, WIDTH, 10, wallOptions));
+    //walls.push(Bodies.rectangle(WIDTH, HEIGHT / 2, 10, HEIGHT, wallOptions));
+
+    //World.add(world, ground);
+    //walls.forEach(wall => {
+        //World.add(world, wall);
+    //})
+
+    shooters = [];
+
+
     //h = new Hoop(WIDTH - HOOP_RAD - HoopCollidors * 2, random(100, HEIGHT - 100));
     h = new Hoop(random(WIDTH / 2, WIDTH - HOOP_RAD - HoopCollidors * 2), random(100, HEIGHT - 100))
-    // ^ IF YOU CHANGE THIS MAKE SURE TO CHANGE IT IN THE INPUT NORMALISATION
+        // ^ IF YOU CHANGE THIS MAKE SURE TO CHANGE IT IN THE INPUT NORMALISATION
 }
 
 function normalise(num, in_min, in_max, out_min, out_max) {
