@@ -39,23 +39,23 @@ var netOptions = {
     density: 0.3,
     timeScale: 3
 }
-const BALL_DIAM = 60; //diam in cm
+const BALL_DIAM = 50; //diam in cm
 
-const TIMEOUT = 3 * 60;
+const TIMEOUT = 4.5 * 60;
 let counter = 0;
 
 const BACKBOARD_HEIGHT = 220;
 const BACKBOARD_THICKNESS = 20;
 
-const HOOP_RAD = 50;
+const HOOP_RAD = 60;
 const NET_LENGTH = HOOP_RAD * (3 / 2);
 const HOOP_X = WIDTH - HOOP_RAD - BACKBOARD_THICKNESS - 5;
 
-const SHOOTERS = 20;
-const mutationRate = 0.1;
+const SHOOTERS = 50;
+const mutationRate = 0.3;
 
-const SHOOTER_MAX_X = 30;
-const SHOOTER_MAX_Y = -30;
+const SHOOTER_MAX_X = 40;
+const SHOOTER_MAX_Y = -40;
 
 const SHOOTER_START_X = 50;
 const SHOOTER_START_Y = HEIGHT - 50;

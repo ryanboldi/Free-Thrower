@@ -27,7 +27,7 @@ function initNeat() {
         popsize: SHOOTERS,
         mutationRate: mutationRate,
         elitism: Math.round(0.1 * SHOOTERS),
-        network: new Architect.Random(2, 4, 2)
+        network: new Architect.Random(2, 1, 2)
     });
 }
 

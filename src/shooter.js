@@ -11,6 +11,8 @@ class Shooter {
 
     shoot() {
         let input = [normalise(h.pos.y, 100, HEIGHT - 100, 1, 0), normalise(h.pos.x, WIDTH / 2, WIDTH - HOOP_RAD - HoopCollidors * 2, 0 , 1)];
+        //console.log(input);
+
         let output = this.brain.activate(input);
         let vel = {
             x: normalise(output[0], 0, 1, 0, SHOOTER_MAX_X),
