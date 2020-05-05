@@ -1,7 +1,7 @@
 const WIDTH = 1000;
 const HEIGHT = 800;
 
-const HoopCollidors = 4; //invisible collision for the hoops
+const HoopCollidors = 10; //invisible collision for the hoops
 
 //physics engine
 var Engine = Matter.Engine,
@@ -51,7 +51,7 @@ const HOOP_RAD = 60;
 const NET_LENGTH = HOOP_RAD * (3 / 2);
 const HOOP_X = WIDTH - HOOP_RAD - BACKBOARD_THICKNESS - 5;
 
-const SHOOTERS = 50;
+const SHOOTERS = 30;
 const mutationRate = 0.3;
 
 const SHOOTER_MAX_X = 40;
@@ -131,14 +131,14 @@ function resetHoop() {
     World.clear(world, false);
 
     ground = Bodies.rectangle(WIDTH / 2, HEIGHT, WIDTH, 50, wallOptions);
-    //walls.push(Bodies.rectangle(0, HEIGHT / 2, 10, HEIGHT, wallOptions));
-    //walls.push(Bodies.rectangle(WIDTH / 2, 0, WIDTH, 10, wallOptions));
-    //walls.push(Bodies.rectangle(WIDTH, HEIGHT / 2, 10, HEIGHT, wallOptions));
+    walls.push(Bodies.rectangle(0, HEIGHT / 2, 10, HEIGHT, wallOptions));
+    walls.push(Bodies.rectangle(WIDTH / 2, 0, WIDTH, 10, wallOptions));
+    walls.push(Bodies.rectangle(WIDTH, HEIGHT / 2, 10, HEIGHT, wallOptions));
 
-    //World.add(world, ground);
-    //walls.forEach(wall => {
-        //World.add(world, wall);
-    //})
+    World.add(world, ground);
+    walls.forEach(wall => {
+        World.add(world, wall);
+    })
 
     shooters = [];
 

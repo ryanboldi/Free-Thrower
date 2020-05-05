@@ -29,7 +29,7 @@ class Hoop {
         netOptions.id = 11;
         this.comp = Matter.Composite.add(this.comp, Bodies.rectangle(net[0], net[1], net[2], net[3], netOptions));
 
-        this.comp = Matter.Composite.add(this.comp, Bodies.rectangle(this.pos.x, this.pos.y + 10, HOOP_RAD * 1, 5, { isSensor: true, isStatic: true, id: 99 }));
+        this.comp = Matter.Composite.add(this.comp, Bodies.rectangle(this.pos.x, this.pos.y + 10, HOOP_RAD * 0.5, 5, { isSensor: true, isStatic: true, id: 99 }));
 
 
         Matter.Composite.get(this.comp, 10, 'body').collisionFilter.group = -2;
@@ -91,7 +91,7 @@ class Hoop {
         strokeWeight(0.5);
         fill(255, 0, 0, 10);
         stroke(255, 0, 0);
-        rect(0, 10, HOOP_RAD * 1, 5)
+        rect(0, 10, HOOP_RAD * 0.5, 5)
 
         //TODO, MAYBE DRAW
         pop();
