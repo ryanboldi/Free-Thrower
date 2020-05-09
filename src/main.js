@@ -72,9 +72,9 @@ function setup() {
     rectMode(CENTER);
 
     ground = Bodies.rectangle(WIDTH / 2, HEIGHT, WIDTH, 50, wallOptions);
-    walls.push(Bodies.rectangle(0, HEIGHT / 2, 10, HEIGHT, wallOptions));
-    walls.push(Bodies.rectangle(WIDTH / 2, 0, WIDTH, 10, wallOptions));
-    walls.push(Bodies.rectangle(WIDTH, HEIGHT / 2, 10, HEIGHT, wallOptions));
+    //walls.push(Bodies.rectangle(0, HEIGHT / 2, 10, HEIGHT, wallOptions));
+    //walls.push(Bodies.rectangle(WIDTH / 2, 0, WIDTH, 10, wallOptions));
+    //walls.push(Bodies.rectangle(WIDTH, HEIGHT / 2, 10, HEIGHT, wallOptions));
 
     World.add(world, ground);
     walls.forEach(wall => {
@@ -86,7 +86,8 @@ function setup() {
     Engine.run(engine);
 
 
-    h = new Hoop(WIDTH - HOOP_RAD - HoopCollidors * 2, 500);
+    // h = new Hoop(WIDTH - HOOP_RAD - HoopCollidors * 2, 500);
+    h = new Hoop(width - (HOOP_RAD + 20), 200);
     startEvaluation();
 }
 
@@ -131,9 +132,9 @@ function resetHoop() {
     World.clear(world, false);
 
     ground = Bodies.rectangle(WIDTH / 2, HEIGHT, WIDTH, 50, wallOptions);
-    walls.push(Bodies.rectangle(0, HEIGHT / 2, 10, HEIGHT, wallOptions));
-    walls.push(Bodies.rectangle(WIDTH / 2, 0, WIDTH, 10, wallOptions));
-    walls.push(Bodies.rectangle(WIDTH, HEIGHT / 2, 10, HEIGHT, wallOptions));
+    //walls.push(Bodies.rectangle(0, HEIGHT / 2, 10, HEIGHT, wallOptions));
+    //walls.push(Bodies.rectangle(WIDTH / 2, 0, WIDTH, 10, wallOptions));
+    //walls.push(Bodies.rectangle(WIDTH, HEIGHT / 2, 10, HEIGHT, wallOptions));
 
     World.add(world, ground);
     walls.forEach(wall => {
@@ -144,8 +145,9 @@ function resetHoop() {
 
 
     //h = new Hoop(WIDTH - HOOP_RAD - HoopCollidors * 2, random(100, HEIGHT - 100));
-    h = new Hoop(random(WIDTH / 2, WIDTH - HOOP_RAD - HoopCollidors * 2), random(100, HEIGHT - 100))
-        // ^ IF YOU CHANGE THIS MAKE SURE TO CHANGE IT IN THE INPUT NORMALISATION
+    //h = new Hoop(random(WIDTH / 2, WIDTH - HOOP_RAD - HoopCollidors * 2), random(100, HEIGHT - 100))
+    // ^ IF YOU CHANGE THIS MAKE SURE TO CHANGE IT IN THE INPUT NORMALISATION
+    h = new Hoop(width - (HOOP_RAD + 20), 200);
 }
 
 function normalise(num, in_min, in_max, out_min, out_max) {
