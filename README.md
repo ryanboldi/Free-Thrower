@@ -6,4 +6,4 @@
 
 # Results
 We can see that the "Shooters" learn to shoot the basketballs to the right, but not too strong to overshoot the hoop.
-![result](winning.gif)
+![result](Winning.gif)
